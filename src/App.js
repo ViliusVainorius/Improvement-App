@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import "./index.css"
-import Navbar from "./Navbar"
-import Sidebar from "./Sidebar"
-import TodoTasks from "./TodoTasks"
+import Navbar from "./bars/Navbar"
+import Sidebar from "./bars/Sidebar"
+import TodoTasks from "./todo/TodoTasks"
 
 export default function App() {
 

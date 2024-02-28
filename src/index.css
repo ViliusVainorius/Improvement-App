@@ -6,7 +6,7 @@
 body {
   background: #333;
   color: hsl(200, 100%, 90%);
-  max-width: 400px;
+  max-width: 600px;
   padding: 1rem;
   margin: 0 auto;
 }
@@ -49,7 +49,7 @@ body {
   background: hsl(0, 100%, 40%, 0.2);
 }
 
-.new-item-form input {
+.new-item-form input, textarea{
   outline: none;
   border: 1px solid hsl(200, 100%, 40%);
   background: hsl(200, 100%, 30%);
@@ -102,7 +102,7 @@ body {
   outline: 1px solid hsl(200, 100%, 50%);
 }
 
-.list li input {
+.list li input.checkmark {
   outline: none;
   width: 0;
   height: 0;

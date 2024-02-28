@@ -35,7 +35,9 @@ export function NewTodoForm({ onSubmit }) {
         />
       </div>
       <div className="form-row">
-        <label htmlFor="description">Description</label>
+        <label htmlFor="description" className="non-resizable-textarea">
+          Description
+        </label>
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}

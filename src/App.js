@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react"
 import "./index.css"
 import Navbar from "./bars/Navbar"
 import Sidebar from "./bars/Sidebar"

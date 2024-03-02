@@ -15,8 +15,8 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.7),
-      rgba(0, 0, 0, 0.3)), url('./components/auth/LoginForm/Assets/background-darker.avif') no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.9),
+      rgba(0, 0, 0, 0.4)), url('./components/auth/LoginForm/Assets/background-darker.avif') no-repeat;
   background-size: cover;
   background-position: center;
 }

@@ -26,7 +26,6 @@ const LoginForm = () => {
                     <p>Don't have an account? <a href="#">Register</a></p>
                 </div>
             </form>
-            <div className='overlay-picture'></div>
         </div>
     )
 };

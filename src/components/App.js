@@ -1,11 +1,10 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import "../index.css"
-import Navbar from "./bars/Navbar"
-import Sidebar from "./bars/Sidebar"
-import TodoTasks from "../todo/TodoTasks"
 import LoginForm from "./auth/LoginForm/LoginForm"
 import RegisterForm from "./auth/RegisterForm/RegisterForm"
 import { AuthProvider } from '../contexts/authContext';
+import Home from './Home';
+import NotFound from './NotFound';
 
 export default function App() {
 
@@ -20,9 +19,10 @@ export default function App() {
             <RegisterForm />
           </Route>
           <Route path="/home">
-            <Navbar />
-            <Sidebar />
-            <TodoTasks />
+            <Home />
+          </Route>
+          <Route path="*">
+            <NotFound />
           </Route>
         </Switch>
       </Router>

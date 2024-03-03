@@ -8,10 +8,7 @@ import { useAuth } from '../../../contexts/authContext';
 
 const LoginForm = () => {
     const history = useHistory();
-    // const userLoggedIn = false;
-    // console.log(userLoggedIn);
     const { userLoggedIn } = useAuth()
-    // console.log(userLoggedIn)
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')

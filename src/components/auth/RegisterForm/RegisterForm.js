@@ -22,7 +22,7 @@ const RegisterForm = () => {
         e.preventDefault()
 
         if (!isRegistering) {
-            if (password == confirmPassword) {
+            if (password === confirmPassword) {
                 setIsRegistering(true)
                 setErrorMessage('')
                 try {

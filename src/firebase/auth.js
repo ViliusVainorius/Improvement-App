@@ -14,7 +14,7 @@ export const doSignInWithGoogle = async () => {
     const result = await signInWithPopup(auth, provider);
 
     // result.user saving user info to firebase!!!!
-    const user = result.user;
+    // const user = result.user;
 
     return result
 }

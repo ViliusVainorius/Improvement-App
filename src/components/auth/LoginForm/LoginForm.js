@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
+import { useHistory, Link } from 'react-router-dom';
 import './LoginForm.css';
 import { FaUser, FaLock } from "react-icons/fa";
 import { doSignInWithEmailAndPassword, doSignInWithGoogle } from '../../../firebase/auth';
 import { useAuth } from '../../../contexts/authContext';
-import { useHistory, Link } from 'react-router-dom';
+
 
 const LoginForm = () => {
     const history = useHistory();
-    const userLoggedIn = false;
+    // const userLoggedIn = false;
     // console.log(userLoggedIn);
-    // const { userLoggedIn } = useAuth()
+    const { userLoggedIn } = useAuth()
     // console.log(userLoggedIn)
 
     const [email, setEmail] = useState('')
@@ -29,7 +30,8 @@ const LoginForm = () => {
                 console.log(error)
                 setIsSigningIn(false)
             }
-
+            // doSendEmailVerification()
+            // console.log('Logged in?')
         }
     }
 
@@ -64,7 +66,9 @@ const LoginForm = () => {
                         <a href="#">Forgot password?</a>
                     </div>
 
-                    <button type="submit">Log in</button>
+                    <button type="submit" disabled={isSigningIn}>
+                        {isSigningIn ? 'Logging In...' : 'Log In'}
+                    </button>
 
                     <div className="register-link">
                         <p>Don't have an account? <Link to="/register">Register</Link></p>

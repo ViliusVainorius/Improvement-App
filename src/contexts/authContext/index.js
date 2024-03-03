@@ -9,7 +9,7 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
-    const [currrentUser, setCurrentUser] = useState(null);
+    const [currentUser, setCurrentUser] = useState(null);
     const [userLoggedIn, setUserLoggedIn] = useState(false);
     const [isEmailUser, setIsEmailUser] = useState(false);
     const [isGoogleUser, setIsGoogleUser] = useState(false);
@@ -44,7 +44,7 @@ export function AuthProvider({ children }) {
     }
 
     const value = {
-        currrentUser,
+        currentUser,
         isEmailUser,
         isGoogleUser,
         userLoggedIn,

@@ -12,8 +12,8 @@ export default function Home() {
         <>
             {!userLoggedIn && (history.push('/'))}
             <Navbar />
-            <Sidebar />
-            <TodoTasks />
+            {/* <Sidebar /> */}
+            {/* <TodoTasks /> */}
         </>
     );
 }

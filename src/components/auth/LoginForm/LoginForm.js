@@ -81,8 +81,9 @@ const LoginForm = () => {
                     </div>
                 </form>
 
+                <div className='or'>or</div>
+
                 <div className="google-login">
-                    <div className='text-sm font-bold w-fit'>OR</div>
                     <button
                         className="gsi-material-button"
                         disabled={isSigningIn}
@@ -104,7 +105,6 @@ const LoginForm = () => {
                         </div>
                     </button>
                 </div>
-
             </div>
         </>
     )

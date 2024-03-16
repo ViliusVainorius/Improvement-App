@@ -2,7 +2,6 @@
 
 * {
   margin: 0;
-  padding: 0;
   font-family: "Quicksand";
   box-sizing: border-box;
 }
@@ -10,10 +9,6 @@
 body {
   background: #333;
   color: hsl(200, 100%, 90%);
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
   background: linear-gradient(rgba(0, 0, 0, 0.9),
       rgba(0, 0, 0, 0.4)), url('./components/auth/LoginForm/Assets/background-darker.avif') no-repeat;
@@ -21,34 +16,7 @@ body {
   background-position: center;
 }
 
-.navbar {
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  margin: 0 auto;
-  border-bottom: 1px solid #f2f2f2;
-}
-
-.navbar h1 {
-  color: #f1356d;
-}
-
-.navbar .links {
-  margin-left: auto;
-}
-
-.navbar a {
-  margin-left: 16px;
-  color: white;
-  text-decoration: none;
-  padding: 6px;
-}
-
-.navbar a:hover {
-  color: #f1356d;
-}
-
-.sidebar {
+/* .sidebar {
   height: 100%;
   width: 240px;
   position: fixed;
@@ -62,7 +30,6 @@ body {
   text-decoration: none;
   font-size: 18px;
   color: #818181;
-  /* display: block; */
 }
 
 .sidebar a:hover {
@@ -71,11 +38,8 @@ body {
 
 .todoTasks {
   margin-left: 260px;
-  /* Width of the sidebar + additional spacing */
   margin-right: auto;
-  /* Center the container horizontally */
   padding: 20px;
-  /* max-width: 900px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -86,7 +50,6 @@ body {
   flex-direction: column;
   gap: 1rem;
   width: 700px;
-  /* Set an exact width */
   margin: 0 auto;
   padding: 10px;
 }
@@ -149,7 +112,6 @@ textarea {
 .list {
   margin: 0;
   padding: 0;
-  /* margin-left: 1rem; */
   list-style: none;
   width: 700px;
 }
@@ -166,9 +128,7 @@ textarea {
 
 .list li {
   margin-bottom: 10px;
-  /* Adjust the margin to add space between li elements */
   padding: 10px;
-  /* Adjust the padding for internal spacing within each li element */
   display: flex;
   gap: 1rem;
   align-items: left;
@@ -186,14 +146,11 @@ textarea {
   flex-direction: column;
   margin-top: 10px;
   margin-left: 10px;
-  /* Adjust the margin as needed */
   margin-right: 10px;
-  /* Adjust the margin as needed */
 }
 
 .task-column {
   margin-bottom: 10px;
-  /* Adjust the margin between columns as needed */
 }
 
 .list li label {
@@ -221,7 +178,6 @@ textarea {
   cursor: pointer;
   outline: none;
   align-self: center;
-  /* Align the button to the end of the flex container */
 }
 
 .list li:has(input:focus-visible) label {
@@ -263,4 +219,4 @@ textarea {
 
 .list li:has(input:checked) label:hover::before {
   background: hsl(200, 100%, 30%);
-}
+} */

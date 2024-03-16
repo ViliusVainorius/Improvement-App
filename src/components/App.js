@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import "../index.css"
 import LoginForm from "./auth/LoginForm/LoginForm"
 import RegisterForm from "./auth/RegisterForm/RegisterForm"
 import { AuthProvider } from '../contexts/authContext';
 import Home from './Home';
 import NotFound from './NotFound';
+import Calendar from './Calendar/Calendar';
 
 export default function App() {
 
@@ -20,6 +20,9 @@ export default function App() {
           </Route>
           <Route path="/home">
             <Home />
+          </Route>
+          <Route path="/calendar">
+            <Calendar />
           </Route>
           <Route path="*">
             <NotFound />

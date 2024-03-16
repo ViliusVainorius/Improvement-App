@@ -1,6 +1,7 @@
 import { useHistory, Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/authContext';
 import { doSignOut } from '../../firebase/auth';
+import "./Navbar.css";
 
 export default function Navbar() {
     const { userLoggedIn } = useAuth()
@@ -12,15 +13,16 @@ export default function Navbar() {
             {
                 userLoggedIn
                     ?
-                    <div className='links'>
+                    <nav className='links'>
                         <Link to="/">Home</Link>
+                        <Link to="/calendar">Calendar</Link>
                         <a
                             onClick={() => { doSignOut().then(() => { history.push('/login') }) }}
                             className='logout-btn' style={{ cursor: 'pointer' }}
                         >
                             Logout
                         </a>
-                    </div>
+                    </nav>
                     :
                     <>
                     </>

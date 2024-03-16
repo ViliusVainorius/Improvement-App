@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { NewTodoForm } from "./NewTodoForm";
 import { TodoList } from "./TodoList";
+import "./todo.css"
 
 export default function TodoTasks() {
   const [todos, setTodos] = useState(() => {
@@ -49,7 +50,7 @@ export default function TodoTasks() {
 
   return (
     <>
-      <div className="todoTasks">
+      <div className="component-wrapper">
         <NewTodoForm onSubmit={addTodo} />
         <h1 className="header">Todo List</h1>
         <TodoList

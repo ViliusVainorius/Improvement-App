@@ -1,0 +1,148 @@
+.component-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(65, 0, 35, 0.247);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    margin-top: 20px;
+    font-size: 24px;
+    /* color: rgb(198, 168, 206); */
+}
+
+.component-wrapper>*+* {
+    margin-top: 20px;
+}
+
+.component-wrapper h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.component-wrapper .newTodoForm {
+    margin-bottom: 20px;
+}
+
+.component-wrapper .todoList {
+    list-style: none;
+    padding: 0;
+}
+
+.component-wrapper .todoItem {
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.component-wrapper .todoItem+.todoItem {
+    margin-top: 10px;
+}
+
+.component-wrapper .todoItem .title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.component-wrapper .todoItem .description {
+    font-size: 16px;
+    color: #666;
+}
+
+.component-wrapper .todoItem .dueDateTime {
+    font-size: 14px;
+    color: #999;
+}
+
+.component-wrapper .todoItem .actions {
+    margin-top: 10px;
+}
+
+.component-wrapper .todoItem .actions button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.component-wrapper .todoItem .actions button:hover {
+    background-color: #0056b3;
+}
+
+.component-wrapper .todoItem.completed {
+    background-color: #e9ecef;
+    text-decoration: line-through;
+}
+
+/* ----------------------- CSS FOR ADDING ITEMS FORM --------------------------------*/
+.new-item-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.new-item-form h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.form-row {
+    margin-bottom: 20px;
+}
+
+.form-row label {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.form-row input,
+.form-row textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-row textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-row input[type="datetime-local"] {
+    height: 40px;
+}
+
+.btn {
+    background-color: #f1356d;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #470101;
+}
+
+/*--------------- Tasks List Form ------------------------------- */
+/* .checkmark:checked+.checkmark-label::before {
+    background-color: #000000;
+} */
+
+.tasks {
+    padding: 30px;
+}

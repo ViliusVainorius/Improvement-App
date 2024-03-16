@@ -8,12 +8,13 @@
 
 body {
   background: #333;
-  color: hsl(200, 100%, 90%);
+  color: hsl(0, 100%, 97%);
   min-height: 100vh;
   background: linear-gradient(rgba(0, 0, 0, 0.9),
       rgba(0, 0, 0, 0.4)), url('./components/auth/LoginForm/Assets/background-darker.avif') no-repeat;
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
 }
 
 /* .sidebar {

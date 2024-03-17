@@ -16,13 +16,6 @@ const LoginForm = () => {
     const [isSigningIn, setIsSigningIn] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
 
-    useEffect(() => {
-        // Redirect to home when user is logged in
-        if (userLoggedIn) {
-            history.push('/home');
-        }
-    }, [userLoggedIn, history]);
-
     const onSubmit = async (e) => {
         e.preventDefault()
 
@@ -35,8 +28,6 @@ const LoginForm = () => {
                 console.log(error)
                 setIsSigningIn(false)
             }
-            // doSendEmailVerification()
-            // console.log('Logged in?')
         }
     }
 
@@ -54,7 +45,6 @@ const LoginForm = () => {
 
     return (
         <>
-            {/* {userLoggedIn && (history.push('/home'))} */}
             <div className='wrapper'>
                 <form onSubmit={onSubmit}>
                     <h1>Login</h1>

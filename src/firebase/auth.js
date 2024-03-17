@@ -6,7 +6,15 @@ export const doCreateUserWithEmailAndPassword = async (email, password) => {
 }
 
 export const doSignInWithEmailAndPassword = (email, password) => {
-    return signInWithEmailAndPassword(auth, email, password);
+    return signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            // console.log("User signed in:", userCredential.user);
+            return userCredential;
+        })
+        .catch((error) => {
+            console.error("Sign-in error:", error);
+            throw error;
+        });
 }
 
 export const doSignInWithGoogle = async () => {
@@ -16,7 +24,7 @@ export const doSignInWithGoogle = async () => {
     // result.user saving user info to firebase!!!!
     // const user = result.user;
 
-    return result
+    return result;
 }
 
 export const doSignOut = () => {

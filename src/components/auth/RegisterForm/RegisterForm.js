@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 
 const RegisterForm = () => {
+    const { userLoggedIn } = useAuth();
     const [email, setEmail] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -14,9 +15,11 @@ const RegisterForm = () => {
     const [isRegistering, setIsRegistering] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
 
-    const userLoggedIn = false;
-
     const history = useHistory();
+
+    if (userLoggedIn) {
+        history.push('/home');
+    }
 
     const onSubmit = async (e) => {
         e.preventDefault()
@@ -27,6 +30,8 @@ const RegisterForm = () => {
                 setErrorMessage('')
                 try {
                     await doCreateUserWithEmailAndPassword(email, password)
+                    setIsRegistering(false);
+                    history.push('/home');
                 }
                 catch (error) {
                     console.log(error)
@@ -41,7 +46,6 @@ const RegisterForm = () => {
 
     return (
         <>
-            {userLoggedIn && (history.push('/home'))}
             <div className='wrapper'>
                 <form onSubmit={onSubmit}>
                     <h1>Sign Up</h1>

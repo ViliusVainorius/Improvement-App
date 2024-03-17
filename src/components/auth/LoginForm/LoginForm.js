@@ -43,6 +43,13 @@ const LoginForm = () => {
         }
     }
 
+    useEffect(() => {
+        if (userLoggedIn) {
+            console.log("logged in");
+            history.push('/home');
+        }
+    }, [userLoggedIn]);
+
     return (
         <>
             <div className='wrapper'>

@@ -1,7 +1,6 @@
 import Navbar from "../bars/Navbar"
 import Sidebar from "../bars/Sidebar"
 import { useAuth } from '../../contexts/authContext';
-import { useHistory } from 'react-router-dom';
 
 import Paper from '@mui/material/Paper';
 import { ViewState } from '@devexpress/dx-react-scheduler';
@@ -12,10 +11,10 @@ import {
     MonthView,
     Appointments,
 } from '@devexpress/dx-react-scheduler-material-ui';
+import NotFound from "../NotFound";
 
 const Calendar = () => {
     const { userLoggedIn } = useAuth()
-    const history = useHistory();
 
     const currentDate = '2018-11-01';
     const schedulerData = [
@@ -25,7 +24,7 @@ const Calendar = () => {
 
     return (
         <>
-            {/* {!userLoggedIn && (history.push('/calendar'))} */}
+            {!userLoggedIn && <NotFound />}
             <Navbar />
             {/* <Sidebar /> */}
             <Paper>

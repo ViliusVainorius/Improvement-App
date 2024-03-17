@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { NewTodoForm } from "./NewTodoForm";
 import { TodoList } from "./TodoList";
 import { db } from "../firebase/firebase";
-import { collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { collection, onSnapshot, addDoc, getDoc, getDocs, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import "./todo.css"
 
-export default function TodoTasks({ currentUserUid }) {
+export default function TodoTasks({ userId }) {
   // const [todos, setTodos] = useState(() => {
   //   const localValue = localStorage.getItem("ITEMS");
   //   if (localValue == null) return [];
@@ -13,30 +13,57 @@ export default function TodoTasks({ currentUserUid }) {
   //   return JSON.parse(localValue);
   // });
   const [todos, setTodos] = useState([]);
-
-
+  const [tasks, setTasks] = useState([]);
 
   // useEffect(() => {
   //   localStorage.setItem("ITEMS", JSON.stringify(todos));
   // }, [todos]);
-  useEffect(() => {
-    if (!currentUserUid) {
-      const fetchTodos = async () => {
-        const querySnapshot = await getDocs(collection(db, `/users/${currentUserUid}/tasks`));
-        const fetchedTodos = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-        setTodos(fetchedTodos);
-      };
 
-      fetchTodos();
-    }
-  }, [currentUserUid]);
+  async function getDataFromDB() {
+    //Single doc by id fetch
+    // const usersDocRef = doc(db, "users", userId);
+    // const docSnap = await getDoc(usersDocRef);
 
-  if (currentUserUid) {
-    return <div>Please sign in to view tasks!</div>;
+    //Fetch all docs
+    const dataArray = [];
+    const querySnapshot = await getDocs(collection(db, `users/${userId}/tasks`));
+    querySnapshot.forEach((doc) => {
+      const { title, description, dueDate } = doc.data();
+      const dataObject = {
+        id: doc.id,
+        title: title,
+        description: description,
+        dueDate: dueDate
+      }
+      dataArray.push(dataObject);
+      // console.log(doc.id, " => ", doc.data());
+    });
+
+    // if (docSnap.exists()) {
+    //   console.log("Document data:", docSnap.data());
+    // } else {
+    //   // docSnap.data() will be undefined in this case
+    //   console.log("No such document!");
+    // }
+    console.log(dataArray)
+    return dataArray;
   }
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const fetchedData = await getDataFromDB();
+        setTasks(fetchedData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   function addTodo({ title, description, dueDateTime }) {
-    setTodos((currentTodos) => {
+    setTasks((currentTodos) => {
       return [
         ...currentTodos,
         {
@@ -51,7 +78,7 @@ export default function TodoTasks({ currentUserUid }) {
   }
 
   function toggleTodo(id, completed) {
-    setTodos((currentTodos) => {
+    setTasks((currentTodos) => {
       return currentTodos.map((todo) => {
         if (todo.id === id) {
           return { ...todo, completed };
@@ -63,7 +90,7 @@ export default function TodoTasks({ currentUserUid }) {
   }
 
   function deleteTodo(id) {
-    setTodos((currentTodos) => {
+    setTasks((currentTodos) => {
       return currentTodos.filter((todo) => todo.id !== id);
     });
   }
@@ -73,7 +100,7 @@ export default function TodoTasks({ currentUserUid }) {
       <NewTodoForm onSubmit={addTodo} />
       <h1 className="header">Todo List</h1>
       <TodoList
-        todos={todos}
+        todos={tasks}
         toggleTodo={toggleTodo}
         deleteTodo={deleteTodo}
       />

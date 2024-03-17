@@ -22,7 +22,7 @@ const LoginForm = () => {
         if (!isSigningIn) {
             setIsSigningIn(true)
             try {
-                await doSignInWithEmailAndPassword(email, password)
+                const uid = await doSignInWithEmailAndPassword(email, password)
             }
             catch (error) {
                 console.log(error)
@@ -36,7 +36,7 @@ const LoginForm = () => {
 
         if (!isSigningIn) {
             setIsSigningIn(true)
-            doSignInWithGoogle().catch(err => {
+            const uid = doSignInWithGoogle().catch(err => {
                 setIsSigningIn(false)
             })
             setIsSigningIn(false)

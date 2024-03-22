@@ -16,6 +16,7 @@ export default function Navbar() {
                     <nav className='links'>
                         <Link to="/">Home</Link>
                         <Link to="/calendar">Calendar</Link>
+                        <Link to="/activities">Activities</Link>
                         <a
                             onClick={() => { doSignOut().then(() => { history.push('/login') }) }}
                             className='logout-btn' style={{ cursor: 'pointer' }}
@@ -24,8 +25,7 @@ export default function Navbar() {
                         </a>
                     </nav>
                     :
-                    <>
-                    </>
+                    <></>
             }
         </nav>
     )

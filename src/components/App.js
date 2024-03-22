@@ -5,6 +5,7 @@ import { AuthProvider } from '../contexts/authContext';
 import Home from './Home';
 import NotFound from './NotFound';
 import Calendar from './Calendar/Calendar';
+import StravaActivity from './StravaActivity/StravaActivity';
 
 export default function App() {
 
@@ -23,6 +24,9 @@ export default function App() {
           </Route>
           <Route path="/calendar">
             <Calendar />
+          </Route>
+          <Route path="/activities">
+            <StravaActivity />
           </Route>
           <Route path="*">
             <NotFound />

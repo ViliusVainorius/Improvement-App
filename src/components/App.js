@@ -6,6 +6,8 @@ import Home from './Home';
 import NotFound from './NotFound';
 import Calendar from './Calendar/Calendar';
 import StravaActivity from './StravaActivity/StravaActivity';
+import StravaCallback from './StravaActivity/StravaCallback';
+import StravaDashboard from './StravaActivity/StravaDashboard';
 
 export default function App() {
 
@@ -27,6 +29,12 @@ export default function App() {
           </Route>
           <Route path="/activities">
             <StravaActivity />
+          </Route>
+          <Route path="/strava_callback">
+            <StravaCallback />
+          </Route>
+          <Route path="/strava_dashboard">
+            <StravaDashboard />
           </Route>
           <Route path="*">
             <NotFound />

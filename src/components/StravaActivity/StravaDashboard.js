@@ -5,6 +5,8 @@ import { getDocs, query, collection, where } from 'firebase/firestore';
 import { useAuth } from '../../contexts/authContext';
 import NotFound from '../NotFound';
 import TaskSelect from './TaskSelect/TaskSelect';
+import StravaActivitySelect from './TaskSelect/StravaActivitySelect';
+import './TaskSelect/tasks.css';
 
 const StravaDashboard = () => {
 
@@ -40,7 +42,10 @@ const StravaDashboard = () => {
         const fetchTasks = async () => {
             try {
                 const userId = currentUser.uid;
-                const querySnapshot = await getDocs(query(collection(db, `users/${userId}/tasks`), where("completed", "==", false)));
+                const querySnapshot = await getDocs(
+                    query(collection(db, `users/${userId}/tasks`),
+                        where("completed", "==", false),
+                        where("activityType", "!=", "Non-Sport")));
                 const dataArray = querySnapshot.docs.map(doc => ({
                     id: doc.id,
                     ...doc.data()
@@ -59,14 +64,13 @@ const StravaDashboard = () => {
     const handleTaskSelect = (selectedTaskId) => {
         // Handle the selected tasks (e.g., save to state, perform some action)
         console.log("Selected tasks:", selectedTaskId);
-        setSelectedTask(selectedTask)
+        setSelectedTask(selectedTaskId)
     };
 
     return (
         <>
             {!userLoggedIn && <NotFound />}
             <div>
-                <h2>Dashboard</h2>
                 <ul>
                     {activities.map(activity => (
                         <li key={activity.id}>{activity.name}</li>
@@ -74,6 +78,7 @@ const StravaDashboard = () => {
                 </ul>
             </div>
             <TaskSelect tasks={tasks} onTaskSelect={handleTaskSelect} />
+            {selectedTask != null && <StravaActivitySelect />}
         </>
 
     );

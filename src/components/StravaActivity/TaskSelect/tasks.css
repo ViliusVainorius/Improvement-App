@@ -1,0 +1,94 @@
+.task-select-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(65, 0, 35, 0.247);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+.task-select {
+    text-align: left;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.tasks-list {
+    margin-bottom: 50px;
+    /* Add some space between each task */
+    border: 0.1px solid rgb(24, 1, 1);
+    border-radius: 35px;
+    background-color: rgba(255, 255, 255, 0.034);
+    box-shadow: -5px 5px 7px 7px rgba(0, 0, 0, 0.3);
+    padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tasks-list.selected-task {
+    transform: scale(1.05);
+    /* Enlarge the selected task */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+    /* Add a brighter shadow to highlight the selected task */
+}
+
+.tasks-list:last-child {
+    margin-bottom: 0;
+    /* Remove bottom margin from the last task */
+}
+
+.task-details {
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 30px;
+}
+
+
+.task-column {
+    padding: 5px;
+}
+
+.selected-task {
+    background-color: rgba(0, 0, 0, 0.205);
+    /* Change the background color to indicate selection */
+    border: 2px solid rgba(0, 123, 255, 0);
+    /* Add a border to emphasize the selected task */
+}
+
+.task-select-btn {
+    padding: 10px;
+    border-radius: 15px;
+    transition: background-color 0.3s ease;
+    background-color: rgba(216, 43, 95, 0.678);
+    color: rgb(252, 252, 252);
+    font-size: 14px;
+    border-width: 0;
+}
+
+.task-select-btn:disabled {
+    opacity: 0.7;
+}
+
+.task-select-btn:hover {
+    opacity: 0.7;
+}
+
+.select-task-submit-btn {
+    padding: 10px;
+    border-radius: 15px;
+    transition: background-color 0.3s ease;
+    background-color: rgba(216, 43, 95, 0.678);
+    color: rgb(252, 252, 252);
+    font-size: 14px;
+    border-width: 0;
+}
+
+.select-task-submit-btn:hover {
+    opacity: 0.8;
+}

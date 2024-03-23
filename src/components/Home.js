@@ -1,5 +1,4 @@
 import Navbar from "./bars/Navbar"
-import Sidebar from "./bars/Sidebar"
 import TodoTasks from "../todo/TodoTasks"
 import { useAuth } from '../contexts/authContext';
 import React, { useState, useEffect } from 'react';

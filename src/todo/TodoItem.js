@@ -1,6 +1,6 @@
 import { Timestamp } from "firebase/firestore";
 
-export function TodoItem({ id, title, description, createdAt, dueDateTime, deleteTodo, completeTodo }) {
+export function TodoItem({ id, title, description, createdAt, activityType, dueDateTime, deleteTodo, completeTodo }) {
 
   let formattedDueDate = "";
   if (dueDateTime instanceof Timestamp) {
@@ -31,6 +31,9 @@ export function TodoItem({ id, title, description, createdAt, dueDateTime, delet
           </div>
           <div className="task-column">
             <strong>Due date:</strong> {formattedDueDate}
+          </div>
+          <div className="task-column">
+            <strong>Activity Type: </strong> {activityType}
           </div>
         </div>
       </label>

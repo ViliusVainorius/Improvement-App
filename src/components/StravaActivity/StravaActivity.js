@@ -1,26 +1,36 @@
 import Navbar from "../bars/Navbar"
-import Sidebar from "../bars/Sidebar"
 import { useAuth } from '../../contexts/authContext';
 import React, { useState, useEffect } from 'react';
 import NotFound from "../NotFound";
 import axios from 'axios';
 import StravaAuthCode from "./StravaAuthCode";
+import ActivitiesConnect from "./ActivitiesConnect";
+import StravaDashboard from "./StravaDashboard";
 
-const Calendar = () => {
+const StravaActivity = () => {
     const { userLoggedIn } = useAuth()
+    const [isTokenAccess, setIsTokenAccess] = useState(false);
 
-    const [activities, setActivities] = useState([]);
+    useEffect(() => {
+        // Check if access token exists and is not expired
+        const accessToken = localStorage.getItem('access_token');
+        const tokenExpiration = localStorage.getItem('token_expiration');
 
+        if (accessToken && tokenExpiration && Date.now() < Number(tokenExpiration)) {
+            setIsTokenAccess(true);
+        } else {
+            setIsTokenAccess(false);
+        }
+    }, []);
 
     return (
         <>
             {!userLoggedIn && <NotFound />}
             <Navbar />
-            {/* <Sidebar /> */}
-            <h1>hello world!</h1>
-            <StravaAuthCode />
+            {!isTokenAccess && <StravaAuthCode />}
+            {isTokenAccess && <StravaDashboard />}
         </>
     );
 }
 
-export default Calendar;
+export default StravaActivity;

@@ -18,13 +18,14 @@ export default function TodoTasks({ userId }) {
     const dataArray = [];
     const querySnapshot = await getDocs(query(collection(db, `users/${userId}/tasks`), where("completed", "==", false)));
     querySnapshot.forEach((doc) => {
-      const { title, description, dueDateTime, createdAt } = doc.data();
+      const { title, description, dueDateTime, createdAt, activityType } = doc.data();
       const dataObject = {
         id: doc.id,
         title: title,
         description: description,
         createdAt: createdAt,
-        dueDateTime: dueDateTime
+        dueDateTime: dueDateTime,
+        activityType: activityType
       }
       dataArray.push(dataObject);
       // console.log(doc.id, " => ", doc.data());
@@ -54,7 +55,7 @@ export default function TodoTasks({ userId }) {
     fetchData();
   }, [fetchDataTrigger]);
 
-  async function addTodo({ title, description, dueDateTimeString }) {
+  async function addTodo({ title, description, dueDateTimeString, activityType }) {
     try {
       const parsedDateTime = new Date(dueDateTimeString);
       const dueDateTime = Timestamp.fromDate(parsedDateTime);
@@ -66,6 +67,7 @@ export default function TodoTasks({ userId }) {
         dueDateTime,
         createdAt: serverTimestamp(),
         completed: false,
+        activityType,
       });
 
       setFetchDataTrigger(prevTrigger => !prevTrigger);

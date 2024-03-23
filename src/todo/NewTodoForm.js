@@ -4,6 +4,7 @@ export function NewTodoForm({ onSubmit }) {
   const [newItem, setNewItem] = useState("");
   const [description, setDescription] = useState("");
   const [dueDateTimeString, setDueDateTimeString] = useState("");
+  const [activityType, setActivityType] = useState('');
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -14,12 +15,20 @@ export function NewTodoForm({ onSubmit }) {
       title: newItem,
       description: description,
       dueDateTimeString: dueDateTimeString,
+      activityType: activityType,
     });
 
     setNewItem("");
     setDescription("");
     setDueDateTimeString("");
+    setActivityType("");
   }
+
+  const handleActivityTypeChange = (event) => {
+    const selectedActivityType = event.target.value;
+
+    setActivityType(selectedActivityType);
+  };
 
   return (
     <form onSubmit={handleSubmit} className="new-item-form">
@@ -53,6 +62,19 @@ export function NewTodoForm({ onSubmit }) {
           type="datetime-local"
           id="dueDateTime"
         />
+      </div>
+      <div className="form-row">
+        <label htmlFor="activityType">Activity type</label>
+        <select id="activityType" onChange={handleActivityTypeChange}>
+          <option defaultValue value="Non-Sport">Non-Sport</option>
+          <option value="Walk">Walk</option>
+          <option value="Run">Run</option>
+          <option value="Ride">Ride</option>
+          <option value="Swim">Swim</option>
+          <option value="Hike">Hike</option>
+          <option value="Workout">Workout</option>
+          <option value="Yoga">Yoga</option>
+        </select>
       </div>
       <button className="btn">Add</button>
     </form>

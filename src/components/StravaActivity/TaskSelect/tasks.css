@@ -88,7 +88,7 @@
     padding: 10px;
     border-radius: 15px;
     transition: background-color 0.3s ease;
-    background-color: rgba(216, 43, 95, 0.678);
+    background-color: rgba(216, 43, 95, 0.9);
     color: rgb(252, 252, 252);
     font-size: 16px;
     border-width: 0;
@@ -111,4 +111,29 @@
     padding-top: 20px;
     padding-bottom: 30px;
     margin-bottom: 30px;
+}
+
+.connect-Strava-btn {
+    padding: 10px;
+    border-radius: 15px;
+    transition: background-color 0.3s ease;
+    background-color: rgba(216, 43, 95, 0.678);
+    color: rgb(252, 252, 252);
+    font-size: 16px;
+    border-width: 0;
+}
+
+
+.connect-Strava-btn:hover {
+    opacity: 0.7;
+}
+
+.TaskSelect-btns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.confirm-sync-p {
+    padding-bottom: 20px;
+    padding-left: 50px;
 }

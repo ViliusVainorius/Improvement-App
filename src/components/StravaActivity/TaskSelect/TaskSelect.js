@@ -7,12 +7,15 @@ const TaskSelect = ({ tasks, onTaskSelect }) => {
 
     const handleTaskSelect = (taskId) => {
         if (selectedTask === taskId) {
-            // If the clicked task is already selected, deselect it
             setSelectedTask(null);
         } else {
-            // If a different task is clicked, select it and deselect any previously selected task
             setSelectedTask(taskId);
         }
+    };
+
+    const handleDeselect = () => {
+
+        setSelectedTask(null);
     };
 
     const isSelected = (taskId) => {
@@ -21,7 +24,7 @@ const TaskSelect = ({ tasks, onTaskSelect }) => {
 
     const handleSubmit = () => {
         if (selectedTask) {
-            onTaskSelect([selectedTask]);
+            onTaskSelect(selectedTask);
         }
     };
 
@@ -44,7 +47,10 @@ const TaskSelect = ({ tasks, onTaskSelect }) => {
                         </div>
                     ))}
                 </div>
-                <button className="select-task-submit-btn" onClick={handleSubmit} disabled={!selectedTask}>Confirm</button>
+                <div className="TaskSelect-btns">
+                    <button className="select-task-submit-btn" onClick={handleSubmit} disabled={!selectedTask}>Confirm</button>
+                    <button className="select-task-submit-btn" onClick={handleDeselect}>Deselect any task</button>
+                </div>
                 <p style={{ color: 'red', marginLeft: '50px', marginTop: '20px', fontSize: '18px' }}>
                     At least one task must be selected.
                 </p>

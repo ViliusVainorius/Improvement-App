@@ -9,10 +9,10 @@ const StravaAuthCode = () => {
     };
 
     return (
-        <div>
+        <div className="task-select-container">
             <h2>Connect to Strava!</h2>
-            <p>Connect to Strava, so you can connect your tasks with your Strava activities and see detailed information.</p>
-            <button onClick={handleLogin}>Connect</button>
+            <p>Login to Strava, so you can connect your tasks with your Strava activities and see detailed information.</p>
+            <button className="connect-Strava-btn" onClick={handleLogin}>Connect</button>
         </div>
     );
 }

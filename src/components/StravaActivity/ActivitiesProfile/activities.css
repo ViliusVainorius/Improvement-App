@@ -1,0 +1,130 @@
+.task-view-select-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(65, 0, 35, 0.247);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+.task-view-select-container h2 {
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.activities-listing {
+    display: flex;
+    width: 100%;
+    /* flex: 1; */
+    flex-direction: column;
+    padding-bottom: 10px;
+    /* align-content: center; */
+    /* justify-content: center; */
+    /* flex-wrap: wrap; */
+}
+
+/* Headers */
+.activities-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 2px solid #ffffffa4;
+    /* Add border around the header */
+    padding: 10px;
+    margin-bottom: 30px
+}
+
+.activity-header-item {
+    border-left: 1px solid #ffffff7e;
+    border-right: 1px solid #ffffff7e;
+    padding-left: 10px;
+    padding-right: 20px;
+}
+
+.activity-header-item:nth-child(1) {
+    width: 250px;
+    text-align: center;
+}
+
+.activity-header-item:nth-child(2) {
+    width: 350px;
+    text-align: center;
+}
+
+.activity-header-item:nth-child(3) {
+    width: 200px;
+    text-align: center;
+}
+
+.activity-header-item:nth-child(4) {
+    width: 210px;
+    text-align: center;
+}
+
+.activity-header-item:nth-child(5) {
+    width: 5px;
+    text-align: center;
+    border-left: 0px solid #ffffff7e;
+    border-right: 0px solid #ffffff7e;
+
+}
+
+/* Activities */
+.activity-items {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1px solid #ffffffa4;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.activity-values {
+    border-left: 1px solid #ffffff7e;
+    border-right: 1px solid #ffffff7e;
+    padding-left: 5px;
+    padding-right: 20px;
+}
+
+.activity-values:nth-child(1) {
+    width: 250px;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.activity-values:nth-child(2) {
+    width: 350px;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.activity-values:nth-child(3) {
+    width: 200px;
+    text-align: center;
+}
+
+.activity-values:nth-child(4) {
+    width: 210px;
+    text-align: center;
+}
+
+.activity-values:nth-child(5) {
+    width: 5px;
+    text-align: center;
+    border-left: 0px solid #ffffff7e;
+    border-right: 0px solid #ffffff7e;
+
+}

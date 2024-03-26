@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 import { db } from '../../firebase/firebase';
-import { getDocs, query, collection, where, doc, updateDoc } from 'firebase/firestore';
+import {
+    getDocs,
+    query,
+    collection,
+    where,
+    doc,
+    updateDoc
+} from 'firebase/firestore';
 import { useAuth } from '../../contexts/authContext';
 import NotFound from '../NotFound';
 import NoTasksComponent from './NoTasksComponent';

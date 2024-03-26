@@ -27,7 +27,7 @@ export default function App() {
           <Route path="/calendar">
             <Calendar />
           </Route>
-          <Route path="/activities">
+          <Route path="/activities-sync">
             <StravaActivity />
           </Route>
           <Route path="/strava_callback">

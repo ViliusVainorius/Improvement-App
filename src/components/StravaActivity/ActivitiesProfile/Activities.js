@@ -3,6 +3,7 @@ import Navbar from "../../bars/Navbar";
 import NotFound from "../../NotFound";
 import ActivitiesListing from "./ActivitiesListing";
 import './activities.css';
+import CompletedActivities from "./CompletedActivities";
 
 const Activities = () => {
     const { userLoggedIn, currentUser } = useAuth()
@@ -16,6 +17,8 @@ const Activities = () => {
                 <>
                     <Navbar />
                     <ActivitiesListing />
+
+                    <CompletedActivities />
                 </>
             }
         </>

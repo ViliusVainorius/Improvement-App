@@ -31,6 +31,9 @@ export default function Navbar() {
                             <div className="activities-div">
                                 <Link to="/activities">Activities</Link>
                             </div>
+                            <div className="profile-div">
+                                <Link to="/profile">Profile</Link>
+                            </div>
                         </div>
                         <div className="logout-tab">
                             <a

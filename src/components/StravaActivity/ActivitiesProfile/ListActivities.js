@@ -15,9 +15,6 @@ const ListActivities = () => {
         return formattedDate;
     };
 
-
-
-
     useEffect(() => {
         const fetchTasks = async () => {
             try {

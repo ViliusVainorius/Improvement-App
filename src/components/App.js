@@ -9,6 +9,7 @@ import StravaActivity from './StravaActivity/StravaActivity';
 import StravaCallback from './StravaActivity/StravaCallback';
 import StravaDashboard from './StravaActivity/StravaDashboard';
 import Activities from './StravaActivity/ActivitiesProfile/Activities';
+import Profile from './Profile/Profile';
 
 export default function App() {
 
@@ -43,6 +44,11 @@ export default function App() {
           </Route>
           <Route path="/activities">
             <Activities
+
+            />
+          </Route>
+          <Route path="/profile">
+            <Profile
 
             />
           </Route>

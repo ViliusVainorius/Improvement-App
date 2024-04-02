@@ -1,54 +1,60 @@
 import Navbar from "../bars/Navbar"
-import Sidebar from "../bars/Sidebar"
 import { useAuth } from '../../contexts/authContext';
-
-import Paper from '@mui/material/Paper';
-import { ViewState } from '@devexpress/dx-react-scheduler';
-import {
-    Scheduler,
-    DayView,
-    WeekView,
-    MonthView,
-    Appointments,
-} from '@devexpress/dx-react-scheduler-material-ui';
 import NotFound from "../NotFound";
+import UpcomingEvents from "./CalendarTypes/UpcomingEvents";
+import React, { useEffect, useState } from "react";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "../../firebase/firebase";
+import TaskCalendar from "./CalendarTypes/TaskCalendar";
+import "./calendar.css";
+import CalendarNavbar from "./CalendarNavbar";
 
 const Calendar = () => {
-    const { userLoggedIn } = useAuth()
+    const { userLoggedIn, currentUser } = useAuth()
+    const [tasks, setTasks] = useState([]);
+    const [selectedView, setSelectedView] = useState('upcomingEvents');
 
-    const currentDate = '2018-11-01';
-    const schedulerData = [
-        { startDate: '2018-11-01T09:45', endDate: '2018-11-01T11:00', title: 'Meeting' },
-        { startDate: '2018-11-01T12:00', endDate: '2018-11-01T13:30', title: 'Go to a gym' },
-    ];
+    const handleViewChange = (view) => {
+        setSelectedView(view);
+    };
+
+    useEffect(() => {
+        const fetchTasks = async () => {
+            try {
+                const userId = currentUser.uid;
+
+                const querySnapshot = await getDocs(
+                    query(collection(db, `users/${userId}/tasks`),
+                        where("completed", "==", false)));
+
+                const dataArray = querySnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+
+                const selectedTaskObjects = dataArray.filter(task => task.isStravaActivitySynced === undefined || !task.isStravaActivitySynced);
+
+                setTasks(selectedTaskObjects);
+                console.log(selectedTaskObjects)
+            } catch (error) {
+                console.error('Error fetching tasks:', error);
+                // Handle error
+            }
+        };
+
+        fetchTasks();
+    }, []);
 
     return (
         <>
             {!userLoggedIn && <NotFound />}
             <Navbar />
-            {/* <Sidebar /> */}
-            <Paper>
-                <Scheduler
-                    data={schedulerData}
-                >
-                    <ViewState
-                        currentDate={currentDate}
-                    />
-                    {/* <DayView
-                        startDayHour={9}
-                        endDayHour={14}
-                    /> */}
-                    {/* <WeekView
-                        startDayHour={9}
-                        endDayHour={14}
-                    /> */}
-                    <MonthView
-                        startDayHour={9}
-                        endDayHour={14}
-                    />
-                    <Appointments />
-                </Scheduler>
-            </Paper>
+            <CalendarNavbar onViewChange={handleViewChange} />
+            <div className="calendar-div">
+                {selectedView === 'upcomingEvents' && <UpcomingEvents />}
+                {selectedView === 'activeTasks' && <TaskCalendar tasks={tasks} />}
+                {/* Add more conditional rendering for other calendar views */}
+            </div>
         </>
     );
 }

@@ -1,0 +1,25 @@
+.calendar-div {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.calendar-nav {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+    margin-top: 40px;
+    border-bottom: 1px solid white;
+    padding-bottom: 20px;
+}
+
+.calendar-item-div {
+    cursor: pointer;
+}
+
+.calendar-item-div:hover {
+    color: #f1356d;
+}

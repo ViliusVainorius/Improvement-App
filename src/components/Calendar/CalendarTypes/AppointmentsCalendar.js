@@ -17,33 +17,30 @@ import { useEffect, useState } from 'react';
 import { addDoc, collection, doc, Timestamp, updateDoc } from 'firebase/firestore';
 import { db } from '../../../firebase/firebase';
 import { useAuth } from '../../../contexts/authContext';
+import { TextField } from '@mui/material';
+import DateTimePicker from '@mui/lab/DateTimePicker';
 
-const TaskCalendar = ({ tasks, onDataAdded }) => {
-    const [currentDate, setCurrentDate] = useState(new Date());
-    const [appointments, setAppointments] = useState([]);
+
+const AppointmentsCalendar = ({ events }) => {
     const { userLoggedIn, currentUser } = useAuth();
-
-
-    const schedulerData = [
-        { startDate: '2018-11-01T09:45', endDate: '2018-11-01T11:00', title: 'Meeting' },
-        { startDate: '2018-11-01T12:00', endDate: '2018-11-01T13:30', title: 'Go to a gym' },
-    ];
+    const [appointments, setAppointments] = useState([]);
 
     useEffect(() => {
-        if (tasks && tasks.length > 0) {
-            // console.log(tasks)
-            setAppointments(createCalendarData(tasks));
+        if (events && events.length > 0) {
+            console.log(events)
+            setAppointments(createCalendarData(events));
             // console.log("setApointments - ", appointments)
         }
-    }, [tasks]);
+    }, [events]);
 
     const createCalendarData = (tasks) => {
+
         const mappedTasks = tasks.map(task => ({
             id: task.id,
             title: task.title,
-            note: task.description,
-            startDate: convertFirestoreTimestampToDate(task.createdAt),
-            endDate: convertFirestoreTimestampToDate(task.dueDateTime)
+            note: task.location,
+            startDate: convertFirestoreTimestampToDate(task.startDate),
+            endDate: convertFirestoreTimestampToDate(task.endDate)
         }));
 
         //console.log("Mapped tasks:", mappedTasks);
@@ -63,10 +60,11 @@ const TaskCalendar = ({ tasks, onDataAdded }) => {
             setupObjectForAdd(added);
         }
         if (changed) {
-            for (let id in changed) {
-                const updatedFields = changed[id];
-                updateTasks(id, updatedFields);
-            }
+            // for (let id in changed) {
+            //     const updatedFields = changed[id];
+            //     updateTasks(id, updatedFields);
+            // }
+            alert("editing is not allowed yet.")
         }
         if (deleted !== undefined) {
         }
@@ -80,30 +78,30 @@ const TaskCalendar = ({ tasks, onDataAdded }) => {
             transformedFields.title = added.title;
         }
         else {
-            transformedFields.title = "Unnamed task"
+            alert("Event title is required.");
+            return 0;
         }
 
         if (added.startDate) {
-            transformedFields.createdAt = new Timestamp(added.startDate / 1000, 0);
+            transformedFields.startDate = new Timestamp(added.startDate / 1000, 0);
         }
 
         if (added.endDate) {
-            transformedFields.dueDateTime = new Timestamp(added.endDate / 1000, 0);
+            transformedFields.endDate = new Timestamp(added.endDate / 1000, 0);
         }
 
         if (added.notes !== null && added.notes !== undefined) {
-            transformedFields.description = added.notes;
+            transformedFields.location = added.notes;
         }
         else {
-            transformedFields.description = "no description"
+            transformedFields.location = "no location provided"
         }
 
         const firestoreObject = {
             title: transformedFields.title,
-            description: transformedFields.description,
-            createdAt: transformedFields.createdAt,
-            dueDateTime: transformedFields.dueDateTime,
-            completed: false,
+            startDate: transformedFields.startDate,
+            endDate: transformedFields.endDate,
+            location: transformedFields.location,
         };
 
         //console.log(firestoreObject);
@@ -114,49 +112,22 @@ const TaskCalendar = ({ tasks, onDataAdded }) => {
         const userId = currentUser.uid;
 
         try {
-            const docRef = await addDoc(collection(db, `users/${userId}/tasks`), firestoreObject);
-
+            const docRef = await addDoc(collection(db, `users/${userId}/events`), firestoreObject)
             console.log('Document written with ID:', docRef.id);
-
-            onDataAdded();
-
             return docRef.id;
-        } catch (error) {
+        }
+        catch (error) {
+            alert("Event failed to create! ", error);
             console.error('Error adding document:', error);
             throw error;
         }
     };
 
-    const updateTasks = async (id, updatedFields) => {
-        const userId = currentUser.uid;
-        const taskRef = doc(db, `users/${userId}/tasks`, id);
-
-        const transformedFields = {};
-
-        if (updatedFields.title !== null && updatedFields.title !== undefined) {
-            transformedFields.title = updatedFields.title;
-        }
-
-        if (updatedFields.startDate) {
-            transformedFields.createdAt = new Timestamp(updatedFields.startDate / 1000, 0);
-        }
-
-        if (updatedFields.endDate) {
-            transformedFields.dueDateTime = new Timestamp(updatedFields.endDate / 1000, 0);
-        }
-
-        await updateDoc(taskRef, transformedFields);
-        console.log("update - ", id, transformedFields)
-    };
-
-    // const calendarData = createCalendarData(tasks);
-    // console.log("calendar data - ", calendarData);
-
     return (
         <>
             <div>
-                <h1>Tasks calendar</h1>
-                <h3>all created tasks that are not finished will be visible in the calendar</h3>
+                <h1>Appointments calendar</h1>
+                <h3>All appointments are listed and can be viewed in the calendar!</h3>
             </div>
             <Paper>
                 <Scheduler
@@ -194,12 +165,11 @@ const TaskCalendar = ({ tasks, onDataAdded }) => {
                         showCloseButton
                         showOpenButton
                     />
-                    <AppointmentForm
-                    />
+                    <AppointmentForm />
                 </Scheduler>
             </Paper>
         </>
     );
 }
 
-export default TaskCalendar;
+export default AppointmentsCalendar;

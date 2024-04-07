@@ -27,7 +27,7 @@ const ActivitiesListing = () => {
                         </div>
                         <div className="activity-header-item">
                             <strong>
-                                Is synced with Strava?
+                                Strava status
                             </strong>
                         </div>
                         <div className="activity-header-item">

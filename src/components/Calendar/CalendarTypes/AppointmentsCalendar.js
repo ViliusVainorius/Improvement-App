@@ -125,7 +125,7 @@ const AppointmentsCalendar = ({ events }) => {
 
     return (
         <>
-            <div>
+            <div className='events-titles-div'>
                 <h1>Appointments calendar</h1>
                 <h3>All appointments are listed and can be viewed in the calendar!</h3>
             </div>

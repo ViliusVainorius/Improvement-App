@@ -154,7 +154,7 @@ const TaskCalendar = ({ tasks, onDataAdded }) => {
 
     return (
         <>
-            <div>
+            <div className='events-titles-div'>
                 <h1>Tasks calendar</h1>
                 <h3>all created tasks that are not finished will be visible in the calendar</h3>
             </div>

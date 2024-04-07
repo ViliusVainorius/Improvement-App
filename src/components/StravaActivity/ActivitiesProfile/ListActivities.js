@@ -60,7 +60,7 @@ const ListActivities = () => {
                             {formatDateTime(task.createdAt)}
                         </div>
                         <div className="activity-values">
-                            {task.isStravaActivitySynced ? 'Yes' : 'No'}
+                            {task.isStravaActivitySynced ? 'Synced' : 'Not synced'}
                         </div>
                         <button
                             className="sync-button"

@@ -85,7 +85,7 @@ const Calendar = () => {
             <Navbar />
             <CalendarNavbar onViewChange={handleViewChange} />
             <div className="calendar-div">
-                {selectedView === 'upcomingEvents' && <UpcomingEvents />}
+                {selectedView === 'upcomingEvents' && <UpcomingEvents events={events} />}
                 {selectedView === 'activeTasks' && <TaskCalendar tasks={tasks} onDataAdded={handleDataAdded} />}
                 {selectedView === 'appointmentCalendar' && <AppointmentsCalendar events={events} />}
             </div>

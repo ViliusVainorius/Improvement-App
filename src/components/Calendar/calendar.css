@@ -5,6 +5,7 @@
 
 .calendar-nav {
     max-width: 1200px;
+    height: 50px;
     margin: auto;
     display: flex;
     flex-direction: row;
@@ -17,9 +18,151 @@
 }
 
 .calendar-item-div {
+    font-size: 18px;
     cursor: pointer;
+    transition: font-size 0.5s ease;
 }
 
 .calendar-item-div:hover {
     color: #f1356d;
+    font-size: 20px
+}
+
+.event-list-div {
+    border: 1px solid white;
+    /* Add border */
+    padding: 10px;
+    /* Add padding */
+    display: flex;
+    flex-direction: column;
+}
+
+.event-div {
+    display: flex;
+    margin-bottom: 10px;
+    /* Adjust spacing between events */
+    border-bottom: 1px solid white;
+    padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Style the first event (index 0) to be larger */
+.event-div:first-child {
+    flex-grow: 2.5;
+    /* Make it twice as large */
+    font-size: 1.5em;
+    color: #ff0c51;
+    background-color: #0000005b;
+    backdrop-filter: blur(5px);
+    /* Larger font size */
+}
+
+/* Style the second event to be slightly smaller */
+.event-div:nth-child(2) {
+    flex-grow: 2.0;
+    /* Make it 1.5 times as large */
+    font-size: 1.3em;
+    color: #fd739a;
+    background-color: #00000059;
+    backdrop-filter: blur(4px);
+    /* Slightly smaller font size */
+}
+
+/* Style the third event to be smaller */
+.event-div:nth-child(3) {
+    flex-grow: 1.2;
+    /* Make it 1.2 times as large */
+    font-size: 1em;
+    color: #ffaec5;
+    background-color: #0000001f;
+    backdrop-filter: blur(4px);
+    /* Normal font size */
+}
+
+/* Style all events beyond the third one to be normal */
+.event-div:nth-child(n + 4) {
+    flex-grow: 1;
+    /* Normal size */
+    font-size: 1em;
+    /* Normal font size */
+}
+
+.event-details-div h3 {
+    padding-bottom: 15px;
+}
+
+.event-details-div p {
+    padding-bottom: 5px;
+}
+
+.event-countdown-div {
+    display: flex;
+    justify-content: space-between;
+    /* Evenly distribute items */
+    align-items: center;
+    /* Center vertically */
+    width: 480px;
+    /* Adjust width as needed */
+    /* margin: 0 auto; */
+    /* Center horizontally */
+}
+
+.event-countdown-div span {
+    position: relative;
+    /* Set position to relative */
+    width: 100px;
+    /* Adjust width as needed */
+    height: 50px;
+    /* Adjust height as needed */
+}
+
+/* Adjust the position of each span element */
+.event-countdown-div span:nth-child(1) {
+    left: 0;
+}
+
+.event-countdown-div span:nth-child(2) {
+    /* left: 60px; */
+    /* Adjust left position as needed */
+    width: 110px;
+}
+
+.event-countdown-div span:nth-child(3) {
+    /* left: 120px; */
+    /* Adjust left position as needed */
+    width: 130px;
+}
+
+.event-countdown-div span:nth-child(4) {
+    /* left: 180px; */
+    /* Adjust left position as needed */
+    width: 150px;
+}
+
+.namings-div {
+    /* margin-left: 70px; */
+    /* margin-right: 70px; */
+    display: flex;
+    flex-wrap: nowrap;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid white;
+    /* justify-content: space-between; */
+}
+
+.split-div {
+    width: 600px;
+    display: flex;
+    justify-content: center;
+}
+
+.events-titles-div {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.events-titles-div h1 {
+    padding-bottom: 10px;
 }

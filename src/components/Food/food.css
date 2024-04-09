@@ -1,0 +1,155 @@
+.component-wrapper {
+    max-width: 1300px;
+    padding: 40px;
+}
+
+.search-title-div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.search-title-div h1 {
+    margin-bottom: 20px;
+}
+
+.ingredien-search-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.ingredien-search-div input {
+    width: 600px;
+    height: 50px;
+    border-radius: 10px;
+    line-height: 30px;
+    outline: 0;
+    border: 0;
+    font-size: 1em;
+    border-radius: 20px;
+    padding: 0 20px;
+    padding-right: 40px;
+}
+
+.search-icon-div {
+    position: absolute;
+    top: 50%;
+    right: 330px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: rgb(65, 0, 35);
+}
+
+.ingredients-search-result-div {
+    margin-top: 20px;
+    background-color: rgba(19, 3, 9, 0.418);
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    /* border: 1px solid white; */
+    border-radius: 30px;
+    box-shadow: 3px 8px 7px rgba(7, 6, 6, 0.767);
+    backdrop-filter: blur(8px);
+}
+
+.ingredients-div {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 5px;
+    margin: 10px;
+    padding: 15px;
+    padding-left: 3px;
+    padding-right: 3px;
+    border: 1px solid white;
+    border-radius: 30px;
+    max-height: 66px;
+}
+
+.ingredients-div>div {
+    padding: 5px;
+}
+
+.search-ingrediant-plus {
+    font-size: 1.3em;
+}
+
+.search-ingrediant-minus {
+    font-size: 1.7em;
+}
+
+.search-ingrediant-plus:hover {
+    color: green;
+}
+
+.search-ingrediant-minus:hover {
+    color: red;
+}
+
+.ingredient-div {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.your-ingredients-div {
+    margin-bottom: 20px;
+}
+
+.your-ingredients-div h2 {
+    padding: 20px;
+}
+
+.your-ingredients-div h3 {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid white;
+}
+
+.your-ingredients-div ul {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: space-between;
+    /* max-width: 500px; */
+    max-height: 500px;
+    margin-top: 10px;
+}
+
+.your-ingredients-div li {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    width: 450px;
+}
+
+.fridge-ingredient-name-div {
+    width: 200px;
+    /* font-weight: bold; */
+    font-size: 1.2em;
+}
+
+.fridge-ingredient-amount-div {
+    width: 80px;
+}
+
+.fridge-ingredient-disc-btn {
+    margin-left: 20px;
+    padding: 10px;
+    color: white;
+    border-radius: 20px;
+    border: 1px solid red;
+    background-color: rgba(236, 16, 16, 0.103)
+}
+
+.fridge-ingredient-disc-btn:hover {
+    cursor: pointer;
+    background-color: red;
+    font-weight: bold;
+}

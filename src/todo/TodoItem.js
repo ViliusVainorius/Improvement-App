@@ -41,7 +41,7 @@ export function TodoItem({ id, title, description, createdAt, activityType, dueD
       <li>
         <button
           onClick={() => deleteTodo(id)}
-          className="btn btn-danger"
+          className="todo-action-btn"
         >
           Delete
         </button>
@@ -50,7 +50,7 @@ export function TodoItem({ id, title, description, createdAt, activityType, dueD
       <li>
         <button
           onClick={() => completeTodo(id)}
-          className="btn btn-danger"
+          className="todo-action-btn"
         >
           Complete
         </button>

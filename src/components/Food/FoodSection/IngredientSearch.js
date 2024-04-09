@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { FaSearch } from "react-icons/fa";
 import ingredientsList from './Ingredients.js';
 
-const IngredientSearch = ({ updateFridgeData }) => {
+const IngredientSearch = ({ updateFridgeData, fridgeData }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [fridge, setFridge] = useState([]);
+
+    useEffect(() => {
+        setFridge(fridgeData);
+    }, [fridgeData]);
 
     const searchLocalIngredients = (query) => {
         const results = ingredientsList.filter(ingredient =>
@@ -112,6 +116,7 @@ const IngredientSearch = ({ updateFridgeData }) => {
             <div className='your-ingredients-div'>
                 <h2>Your ingredients</h2>
                 <h3>In your fridge you currently have these ingredients:</h3>
+                {fridge === undefined && <p>Loading...</p>}
                 {fridge.length > 0 ? (
                     <ul>
                         {fridge.map((ingredient) => (

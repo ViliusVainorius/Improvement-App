@@ -34,6 +34,19 @@ export function NewTodoForm({ onSubmit }) {
     <form onSubmit={handleSubmit} className="new-item-form">
       <h2>Create a task!</h2>
       <div className="form-row">
+        <label htmlFor="activityType">Activity type</label>
+        <select id="activityType" onChange={handleActivityTypeChange}>
+          <option defaultValue value="Non-Sport">Non-Sport</option>
+          <option value="Walk">Walk</option>
+          <option value="Run">Run</option>
+          <option value="Ride">Ride</option>
+          <option value="Swim">Swim</option>
+          <option value="Hike">Hike</option>
+          <option value="Workout">Workout</option>
+          <option value="Yoga">Yoga</option>
+        </select>
+      </div>
+      <div className="form-row">
         <label htmlFor="item">Title</label>
         <input
           required
@@ -62,19 +75,6 @@ export function NewTodoForm({ onSubmit }) {
           type="datetime-local"
           id="dueDateTime"
         />
-      </div>
-      <div className="form-row">
-        <label htmlFor="activityType">Activity type</label>
-        <select id="activityType" onChange={handleActivityTypeChange}>
-          <option defaultValue value="Non-Sport">Non-Sport</option>
-          <option value="Walk">Walk</option>
-          <option value="Run">Run</option>
-          <option value="Ride">Ride</option>
-          <option value="Swim">Swim</option>
-          <option value="Hike">Hike</option>
-          <option value="Workout">Workout</option>
-          <option value="Yoga">Yoga</option>
-        </select>
       </div>
       <button className="btn">Add</button>
     </form>

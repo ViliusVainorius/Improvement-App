@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import IngredientSearch from "./IngredientSearch";
 import { addDoc, collection, doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../../firebase/firebase";
@@ -10,6 +10,30 @@ const FoodSection = () => {
     const { currentUser } = useAuth();
 
     const userId = currentUser.uid;
+
+    useEffect(() => {
+
+        fetchFridgeData();
+
+    }, []);
+
+    const fetchFridgeData = async () => {
+        try {
+            const fridgeDocRef = doc(db, `users/${userId}/fridge`, '0');
+            const fridgeDocSnap = await getDoc(fridgeDocRef);
+
+            if (fridgeDocSnap.exists()) {
+                const fridgeData = fridgeDocSnap.data().fridgeData;
+                // console.log(fridgeData)
+                setFridgeData(fridgeData);
+                updateFridgeData(fridgeData);
+            } else {
+                console.log("Fridge document does not exist.");
+            }
+        } catch (error) {
+            console.error("Error fetching fridge data:", error);
+        }
+    };
 
     const updateFridgeData = (newFridgeData) => {
         prevFridgeDataRef.current = fridgeData; // Update the ref to store the current fridgeData
@@ -50,7 +74,7 @@ const FoodSection = () => {
                     <h1>Search food ingredients!</h1>
                     <p>Search and add any food ingredient to your fridge</p>
                 </div>
-                <IngredientSearch updateFridgeData={updateFridgeData} />
+                <IngredientSearch updateFridgeData={updateFridgeData} fridgeData={fridgeData} />
                 <button
                     className="save-to-fridge-btn"
                     onClick={saveToFridgeCollection}

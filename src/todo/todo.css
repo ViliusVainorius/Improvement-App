@@ -138,11 +138,42 @@
     background-color: #470101;
 }
 
+.todo-action-btn {
+    background-color: #f1356d;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 20px;
+}
+
+.todo-action-btn:hover {
+    background-color: #470101;
+}
+
+ul.list {
+    border-top: 2px solid white;
+}
+
 /*--------------- Tasks List Form ------------------------------- */
 /* .checkmark:checked+.checkmark-label::before {
     background-color: #000000;
 } */
 
 .tasks {
-    padding: 30px;
+    /* padding-bottom: 30px; */
+    margin-bottom: 0px;
+    border-bottom: 1px solid white;
+}
+
+#activityType {
+    width: 200px;
+    /* Set the width */
+    height: 40px;
+    /* Set the height */
+    font-size: 16px;
+    border: 0px;
 }

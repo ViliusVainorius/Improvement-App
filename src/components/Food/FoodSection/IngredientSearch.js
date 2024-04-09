@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaSearch } from "react-icons/fa";
 import ingredientsList from './Ingredients.js';
 
-const IngredientSearch = () => {
+const IngredientSearch = ({ updateFridgeData }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [fridge, setFridge] = useState([]);
@@ -27,30 +27,44 @@ const IngredientSearch = () => {
 
     const addToFridge = (ingredient) => {
         const index = fridge.findIndex(item => item.id === ingredient.id);
+
         if (index !== -1) {
-            // If ingredient already exists in fridge, increase amount
+
             const updatedFridge = [...fridge];
+
             updatedFridge[index].amount += 1;
+
             setFridge(updatedFridge);
+
+            updateFridgeData(updatedFridge);
+
         } else {
-            // If ingredient doesn't exist in fridge, add with amount 1
+
             setFridge([...fridge, { ...ingredient, amount: 1 }]);
+
+            updateFridgeData([...fridge, { ...ingredient, amount: 1 }]);
         }
     };
 
     const removeFromFridge = (ingredient) => {
         const index = fridge.findIndex(item => item.id === ingredient.id);
+
         if (index !== -1) {
-            // If ingredient exists in fridge
+
             const updatedFridge = [...fridge];
+
             if (updatedFridge[index].amount > 1) {
-                // If amount is greater than 1, decrease amount
+
                 updatedFridge[index].amount -= 1;
+
             } else {
-                // If amount is 1, remove ingredient from fridge
+
                 updatedFridge.splice(index, 1);
             }
+
             setFridge(updatedFridge);
+
+            updateFridgeData(updatedFridge);
         }
     };
 

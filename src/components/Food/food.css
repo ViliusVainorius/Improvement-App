@@ -168,3 +168,82 @@
     background-color: rgba(151, 248, 60, 0.733);
     cursor: pointer;
 }
+
+.select-ingredient-div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-bottom: 1px solid white;
+    padding: 10px;
+    padding-bottom: 30px;
+    gap: 30px;
+}
+
+.selected-ingredient-item-div {
+    display: flex;
+    /* align-items: center; */
+    gap: 5px;
+    border: 1px solid white;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: rgba(3, 0, 1, 0.342);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.selected-ingredient-item-div:hover {
+    border-color: rgba(236, 31, 116, 0.753);
+    background-color: rgba(230, 36, 36, 0.253);
+}
+
+.selected-ingredient-item-div label {
+    cursor: pointer;
+}
+
+.selected-ingredient-item-div input[type="checkbox"] {
+    display: none;
+}
+
+.selected-ingredient-item-div.checked {
+    background: #ff327679;
+    color: #fff;
+    box-shadow: 0 2px 10px #e91e63;
+}
+
+.search-btn {
+    /* height: 40px; */
+    width: 200px;
+    border: 1px solid white;
+    border-radius: 20px;
+    color: white;
+    background-color: #8a1cf144;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.search-btn:hover {
+    box-shadow: 0 2px 10px #8a1cf175;
+    background-color: #8a1cf1b4;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.title-p {
+    border-top: 1px solid white;
+    padding-top: 20px;
+}
+
+.titles-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titles-div h2 {
+    padding-bottom: 30px;
+}
+
+.error-msg-div {
+    color: red;
+    font-size: 18px;
+}

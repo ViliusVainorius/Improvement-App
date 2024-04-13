@@ -29,7 +29,7 @@ const ingredientsList = [
     { id: 28, name: 'Lamb' },
     { id: 29, name: 'Apple' },
     { id: 30, name: 'Shrimp' },
-    { id: 31, name: 'Beens' },
+    { id: 31, name: 'Beans' },
     { id: 32, name: 'Tomato' },
     { id: 33, name: 'Cucumber' },
     { id: 34, name: 'Pickles' },

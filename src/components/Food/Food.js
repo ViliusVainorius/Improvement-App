@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../contexts/authContext';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import NotFound from '../NotFound';
@@ -7,15 +7,47 @@ import FoodSection from './FoodSection/FoodSection';
 import "./food.css";
 import FoodNavbar from './FoodNavbar';
 import Recepies from './FoodSection/Recepies';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../../firebase/firebase';
 
 
 const Food = () => {
-    const { userLoggedIn } = useAuth()
+    const { userLoggedIn, currentUser } = useAuth()
     const history = useHistory();
     const [selectedView, setSelectedView] = useState('YourIngredients');
+    const [fridgeData, setFridgeData] = useState([]);
 
-    const handleViewChange = (view) => {
-        setSelectedView(view);
+    const userId = currentUser.uid;
+
+    const handleViewChange = async (view) => {
+        if (selectedView !== view) {
+            setSelectedView(view);
+            await fetchFridgeData();
+        }
+    };
+
+    useEffect(() => {
+
+        fetchFridgeData();
+
+    }, []);
+
+    const fetchFridgeData = async () => {
+        try {
+            const fridgeDocRef = doc(db, `users/${userId}/fridge`, '0');
+            const fridgeDocSnap = await getDoc(fridgeDocRef);
+
+            if (fridgeDocSnap.exists()) {
+                const data = fridgeDocSnap.data().fridgeData;
+                setFridgeData(data);
+                console.log("fridge data - ", data)
+
+            } else {
+                console.log("Fridge document does not exist.");
+            }
+        } catch (error) {
+            console.error("Error fetching fridge data:", error);
+        }
     };
 
     return (
@@ -27,8 +59,8 @@ const Food = () => {
                     <Navbar />
                     <FoodNavbar onViewChange={handleViewChange} />
                     <div className="calendar-div">
-                        {selectedView === 'YourIngredients' && <FoodSection />}
-                        {selectedView === 'Recepies' && <Recepies />}
+                        {selectedView === 'YourIngredients' && <FoodSection data={fridgeData} />}
+                        {selectedView === 'Recepies' && <Recepies data={fridgeData} />}
                         {/* {selectedView === 'appointmentCalendar' && <AppointmentsCalendar events={events} />} */}
                     </div>
 

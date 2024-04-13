@@ -131,7 +131,7 @@ const IngredientSearch = ({ updateFridgeData, fridgeData }) => {
                                     className='fridge-ingredient-disc-btn'
                                     onClick={() => removeFromFridge(ingredient)}
                                 >
-                                    Discard
+                                    Discard 1
                                 </button>
                             </li>
                         ))}

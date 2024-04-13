@@ -3,30 +3,38 @@ import IngredientSearch from "./IngredientSearch";
 import { addDoc, collection, doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../../firebase/firebase";
 import { useAuth } from "../../../contexts/authContext";
+import toast, { Toaster } from 'react-hot-toast';
 
-const FoodSection = () => {
+const FoodSection = ({ data }) => {
     const [fridgeData, setFridgeData] = useState([]);
     const prevFridgeDataRef = useRef([]);
     const { currentUser } = useAuth();
+    const [loading, setLoading] = useState(true);
 
     const userId = currentUser.uid;
 
     useEffect(() => {
-
-        fetchFridgeData();
-
+        fetchFridgeData(); // Call fetchFridgeData initially
     }, []);
 
-    const fetchFridgeData = async () => {
-        try {
-            const fridgeDocRef = doc(db, `users/${userId}/fridge`, '0');
-            const fridgeDocSnap = await getDoc(fridgeDocRef);
+    useEffect(() => {
+        if (data.length > 0) {
+            setLoading(false); // Set loading to false once data is available
+            setFridgeData(data); // Update fridgeData state with the received data
+            updateFridgeData(data);
+        }
+    }, [data]);
 
-            if (fridgeDocSnap.exists()) {
-                const fridgeData = fridgeDocSnap.data().fridgeData;
+    const fetchFridgeData = () => {
+        try {
+            // const fridgeDocRef = doc(db, `users/${userId}/fridge`, '0');
+            // const fridgeDocSnap = await getDoc(fridgeDocRef);
+
+            if (data) {
+                // const fridgeData = fridgeDocSnap.data().fridgeData;
                 // console.log(fridgeData)
-                setFridgeData(fridgeData);
-                updateFridgeData(fridgeData);
+                setFridgeData(data);
+                updateFridgeData(data);
             } else {
                 console.log("Fridge document does not exist.");
             }
@@ -43,7 +51,7 @@ const FoodSection = () => {
     const saveToFridgeCollection = async () => {
         if (JSON.stringify(prevFridgeDataRef.current) !== JSON.stringify(fridgeData)) {
 
-            // console.log(fridgeData, "vs", prevFridgeDataRef.current)
+            console.log(fridgeData, "vs", prevFridgeDataRef.current)
 
             try {
                 const fridgeDocRef = doc(db, `users/${userId}/fridge`, '0');
@@ -58,6 +66,7 @@ const FoodSection = () => {
                 prevFridgeDataRef.current = fridgeData;
 
                 console.log("Fridge data updated successfully - ", fridgeData);
+                toast.success('Successfully saved!')
             } catch (error) {
                 console.error("Error updating fridge data:", error);
             }
@@ -69,19 +78,25 @@ const FoodSection = () => {
 
     return (
         <>
-            <div className="component-wrapper">
-                <div className="search-title-div">
-                    <h1>Search food ingredients!</h1>
-                    <p>Search and add any food ingredient to your fridge</p>
+            <Toaster />
+            {loading ? (
+                <p>Loading...</p>
+            ) : (
+                <div className="component-wrapper">
+                    <div className="search-title-div">
+                        <h1>Search food ingredients!</h1>
+                        <p>Search and add any food ingredient to your fridge</p>
+                    </div>
+                    <IngredientSearch updateFridgeData={updateFridgeData} fridgeData={fridgeData} />
+                    <button
+                        className="save-to-fridge-btn"
+                        onClick={saveToFridgeCollection}
+                    >
+                        Save
+                    </button>
                 </div>
-                <IngredientSearch updateFridgeData={updateFridgeData} fridgeData={fridgeData} />
-                <button
-                    className="save-to-fridge-btn"
-                    onClick={saveToFridgeCollection}
-                >
-                    Save
-                </button>
-            </div>
+            )}
+
         </>
     );
 }

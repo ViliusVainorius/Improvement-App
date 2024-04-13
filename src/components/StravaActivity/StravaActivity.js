@@ -20,6 +20,7 @@ const StravaActivity = () => {
             setIsTokenAccess(true);
         } else {
             setIsTokenAccess(false);
+            console.log(isTokenAccess)
         }
     }, []);
 

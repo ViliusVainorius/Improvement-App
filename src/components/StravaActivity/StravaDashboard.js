@@ -15,6 +15,7 @@ import NoTasksComponent from './NoTasksComponent';
 import TaskSelect from './TaskSelect/TaskSelect';
 import StravaActivitySelect from './StravaActivitySelect/StravaActivitySelect';
 import './TaskSelect/tasks.css';
+import Navbar from '../bars/Navbar';
 
 
 const StravaDashboard = () => {
@@ -40,7 +41,7 @@ const StravaDashboard = () => {
                     ...doc.data()
                 }));
 
-                const selectedTaskObjects = dataArray.filter(task => task.isStravaActivitySynced === undefined || !task.isStravaActivitySynced);
+                const selectedTaskObjects = dataArray.filter(task => (task.isStravaActivitySynced === undefined || !task.isStravaActivitySynced) && task.activityType !== undefined && task.activityType !== "");
 
                 setTasks(selectedTaskObjects);
                 console.log(selectedTaskObjects)
@@ -107,6 +108,7 @@ const StravaDashboard = () => {
                 <NoTasksComponent />
             ) : (
                 <>
+                    {/* <Navbar /> */}
                     <TaskSelect tasks={tasks} onTaskSelect={handleTaskSelect} />
                     {selectedTask != null && <StravaActivitySelect activityType={activityType} selectedTaskId={selectedTask} onStravaActivitySelect={handleStravaTaskSync} />}
                 </>

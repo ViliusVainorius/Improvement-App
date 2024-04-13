@@ -1,20 +1,30 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
+import Navbar from '../bars/Navbar';
 
 const StravaCallback = () => {
 
+    const [error, setError] = useState(false);
+    const [errorMsg, setErrorMsg] = useState("");
     const location = useLocation();
     const history = useHistory();
 
     useEffect(() => {
         const searchParams = new URLSearchParams(location.search);
         const code = searchParams.get('code');
-        console.log(code)
+        // const code = null;
+        if (code == undefined || code == null) {
+            setError(true);
+            setErrorMsg("Error getting authentication token from Strava, reload page and try again later.")
+            return;
+        }
+        console.log("code - ", code);
 
         // Exchange code for access token
         const fetchAccessToken = async () => {
             try {
                 const accessToken = localStorage.getItem('access_token');
+                console.log("access tokken - ", accessToken)
                 const tokenExpiration = localStorage.getItem('token_expiration');
 
                 if (accessToken && tokenExpiration && Date.now() < Number(tokenExpiration)) {
@@ -46,19 +56,30 @@ const StravaCallback = () => {
                 localStorage.setItem('token_expiration', Date.now() + (data.expires_in * 1000));
 
                 // Redirect to dashboard
-                history.push('/strava_dashboard');
+                history.push('/activities-sync');
             } catch (error) {
                 console.error('Error fetching access token:', error);
                 // Handle error
             }
         };
 
-        fetchAccessToken();
+        if (code !== undefined || code !== null) {
+            // code is not null or undefined
+            fetchAccessToken();
+        }
+
     }, [location.search, history]);
 
     return (
         <>
-            <div>Loading...</div>
+            {error ? (
+                <div>
+                    <Navbar />
+                    <div style={{ color: 'red' }}>Error: {errorMsg}</div>
+                </div>
+            ) : (
+                <div>Loading...</div>
+            )}
         </>
 
 

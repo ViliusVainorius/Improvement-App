@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import RecipeCard from "./RecipeCard";
 
 const RecepiesSearch = ({ ingredients }) => {
     // const [isSearched, setIsSearched] = useState(false);
@@ -6,6 +7,7 @@ const RecepiesSearch = ({ ingredients }) => {
     const [errorMsg, setErrorMsg] = useState("");
     const [activeQuery, setActiveQuery] = useState("");
     const [fetchedRecipes, setFetchedRecipes] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleSearch = () => {
 
@@ -68,16 +70,15 @@ const RecepiesSearch = ({ ingredients }) => {
             <button className="search-btn" type="button" onClick={handleSearch}>Search</button>
             {errorMsg && <div className='error-msg-div' > {errorMsg} </div>}
             {!errorMsg &&
-                <div className="recepies-component-div">
-                    {fetchedRecipes.map((recipe) => (
-                        <>
-                            <p key={recipe.id}>{recipe.title}</p>
-                            <p>
-                                <img src={recipe.image} alt={recipe.title} />
-                            </p>
-                        </>
-                    ))}
-                </div>
+                <>
+                    <h2>Search results: </h2>
+                    <div className="recepies-component-div">
+                        {fetchedRecipes.map((recipe) => (
+                            <RecipeCard key={recipe.id} recipe={recipe} />
+                        ))}
+                    </div>
+                </>
+
             }
         </>
     );

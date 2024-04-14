@@ -17,24 +17,24 @@ const RecepiesSearch = ({ ingredients }) => {
         }
 
         setErrorMsg("");
-        console.log("selected: ", ingredients);
+        // console.log("selected: ", ingredients);
 
         const queryString = ingredients.map(ingredient =>
             ingredient.toLowerCase().replace(/\s/g, '+')
         ).join(',');
 
-        console.log("query: ", queryString);
+        // console.log("query: ", queryString);
 
         if (queryString === activeQuery) {
             return;
         }
 
         setActiveQuery(queryString)
-        console.log("fetching recepies")
+        // console.log("fetching recepies")
 
         getRecipesByIngredients(queryString)
             .then(recipes => {
-                console.log('Recipes:', recipes);
+                // console.log('Recipes:', recipes);
                 setFetchedRecipes(recipes);
                 // Handle recipes here
             })

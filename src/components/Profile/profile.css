@@ -1,0 +1,123 @@
+.profile-info-div {
+    display: flex;
+    border: 1px solid rgb(255, 255, 255);
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.753);
+    background-color: rgba(0, 0, 0, 0.158);
+    backdrop-filter: blur(5px);
+    border-radius: 20px;
+    /* height: 2000px; */
+    margin: 20px;
+    padding: 60px;
+    gap: 50px;
+}
+
+.profile-card {
+    border-radius: 8px;
+    width: 200px;
+    max-height: 278px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.753);
+}
+
+.profile-card img {
+    height: 159px;
+    width: 100%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    object-fit: cover;
+}
+
+.image-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.247);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+}
+
+.fixed-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-name {
+    padding: 10px;
+    overflow: hidden;
+    font-size: 20px;
+}
+
+.statistics-div {
+    /* borsder: 1px solid greenyellow; */
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.753);
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.247);
+    width: 800px;
+    padding: 10px;
+    padding-bottom: 80px;
+}
+
+.statistics-div h2 {
+    border-bottom: 1px solid white;
+    padding-bottom: 20px;
+}
+
+.stats {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    /* justify-content: space-between; */
+    gap: 40px;
+    /* width: 100%; */
+    /* Remove this line */
+    height: 100%;
+    /* max-height: 90%; */
+    overflow: hidden;
+    padding: 10px;
+}
+
+.stats h3 {
+    border-bottom: 1px solid white;
+    padding-bottom: 5px;
+    width: 8%;
+    margin-bottom: 10px;
+}
+
+.tasks-amount-div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 100%;
+    gap: 20px;
+    max-height: 200px;
+    font-size: 18px;
+}
+
+.tasks-amount {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 10px;
+}
+
+.pie-chart {
+    position: relative;
+    left: 140px;
+    width: 500px;
+    box-shadow: 0 2px 5px 4px rgba(82, 82, 82, 0.753);
+    border-radius: 8px;
+}

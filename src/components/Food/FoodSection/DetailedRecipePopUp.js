@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { IoMdClose } from "react-icons/io";
+import CompleteRecipe from './CompleteRecipe';
 
 const DetailedRecipePopUp = ({ recipe, onClose }) => {
     const [detailedRecipe, setDetailedRecipe] = useState(null);
@@ -43,17 +44,6 @@ const DetailedRecipePopUp = ({ recipe, onClose }) => {
 
         fetchRecipeDetails();
     }, [recipe]);
-
-    const handleSaveActions = (e) => {
-        e.stopPropagation();
-        if (window.confirm('Are you sure you wish to add this recipe to your profile as completed? Calories and other stats will be counted in.')) {
-            console.log("Saved recipe calories to user")
-            // add a toaster notification when added stats succesfully + add a component which would save the recipe details to profile
-            return;
-        } else {
-            return;
-        }
-    }
 
     return (
         <>
@@ -101,9 +91,7 @@ const DetailedRecipePopUp = ({ recipe, onClose }) => {
                             </div>
                         </div>
                         <div className="used-recipe-div">
-                            <button className='used-recipe-btn' onClick={handleSaveActions}>
-                                Set as completed recipe!
-                            </button>
+                            <CompleteRecipe detailedRecipe={detailedRecipe} calories={nutritionId0} fat={nutritionId1} />
                         </div>
                     </div>
                 </div>

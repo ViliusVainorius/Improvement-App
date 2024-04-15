@@ -49,7 +49,7 @@ export function TodoItem({ id, title, description, createdAt, activityType, dueD
 
       <li>
         <button
-          onClick={() => completeTodo(id)}
+          onClick={() => completeTodo(id, dueDateTime)}
           className="todo-action-btn"
         >
           Complete

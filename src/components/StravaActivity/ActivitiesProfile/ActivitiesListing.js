@@ -2,12 +2,10 @@ import ListActivities from "./ListActivities";
 
 const ActivitiesListing = () => {
 
-
-
     return (
         <>
             <div className="task-view-select-container">
-                <h2>Ongoing tasks</h2>
+                <h2>Ongoing sport tasks</h2>
                 <div className="activities-listing">
                     <div className="activities-header">
                         <div className="activity-header-item">

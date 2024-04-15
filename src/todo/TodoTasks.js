@@ -78,11 +78,18 @@ export default function TodoTasks({ userId }) {
     }
   }
 
-  async function completeTodo(id, completed) {
+  async function completeTodo(id, dueDateTime) {
+
+    const currentDateTime = new Date();
+    const dueDate = dueDateTime.toDate();
+
+    const isInTime = currentDateTime < dueDate;
+
     try {
       // Update the completed field in Firestore
       await updateDoc(doc(db, `users/${userId}/tasks`, id), {
-        completed: true
+        completed: true,
+        isCompletedInTime: isInTime
       });
 
       setFetchDataTrigger(prevTrigger => !prevTrigger);

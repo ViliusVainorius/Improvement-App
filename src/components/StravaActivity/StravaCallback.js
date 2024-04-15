@@ -31,7 +31,7 @@ const StravaCallback = () => {
                     // Redirect to dashboard
                     console.log("accessToken alreaady exists: ", accessToken, " and expiration date: ", tokenExpiration)
 
-                    history.push('/activities');
+                    history.push('/activities-sync');
                     return;
                 }
 

@@ -6,12 +6,12 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
 const ListActivities = () => {
     const history = useHistory();
-    const { userLoggedIn, currentUser } = useAuth()
+    const { currentUser } = useAuth()
     const [tasks, setTasks] = useState([]);
 
     const formatDateTime = (timestamp) => {
-        const date = timestamp.toDate(); // Convert Firestore Timestamp to JavaScript Date
-        const formattedDate = date.toISOString().replace(/T/, ' ').replace(/\..+/, ''); // Format the date
+        const date = timestamp.toDate();
+        const formattedDate = date.toISOString().replace(/T/, ' ').replace(/\..+/, '');
         return formattedDate;
     };
 
@@ -28,10 +28,10 @@ const ListActivities = () => {
                     ...doc.data()
                 }));
 
-                //const selectedTaskObjects = dataArray.filter(task => task.isStravaActivitySynced === undefined || !task.isStravaActivitySynced);
+                const filteredActivities = dataArray.filter(task => task.activityType !== undefined && task.activityType !== "");
 
-                setTasks(dataArray);
-                console.log(dataArray)
+                setTasks(filteredActivities);
+
             } catch (error) {
                 console.error('Error fetching tasks:', error);
                 // Handle error

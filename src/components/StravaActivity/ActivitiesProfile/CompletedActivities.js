@@ -7,7 +7,7 @@ const CompletedActivities = () => {
                 {/* <div className="completed-act-titles-div"> */}
                 <h2>Completed tasks</h2>
                 {/* <button className="act-listing-btn">Sort by date</button> */}
-                <p>sort by: CREEATEA A CENTER FUNCTION</p>
+                {/* <p>sort by: CREEATEA A CENTER FUNCTION</p> */}
                 {/* </div> */}
                 <div className="activities-listing">
                     <div className="activities-header">

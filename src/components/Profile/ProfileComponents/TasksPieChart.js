@@ -5,26 +5,26 @@ var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 class TasksPieChart extends Component {
     render() {
-        const { completed, incompleted } = this.props;
+        const { completed, incompleted, label1, label2, title } = this.props;
 
         const options = {
             theme: "dark2",
             exportEnabled: false,
-            animationEnabled: false,
+            animationEnabled: true,
             title: {
-                text: "Task completion chart",
+                text: title,
             },
             data: [{
                 type: "pie",
                 startAngle: 120,
                 toolTipContent: "<b>{label}</b>: {y}",
                 showInLegend: "true",
-                legendText: "{label}",
+                legendText: "{label} {y}",
                 indexLabelFontSize: 15,
-                indexLabel: "{label}",
+                indexLabel: "{label} {y}",
                 dataPoints: [
-                    { y: completed, label: "Completed" },
-                    { y: incompleted, label: "Incomplete" },
+                    { y: completed, label: label1 },
+                    { y: incompleted, label: label2 },
                 ]
             }]
         }

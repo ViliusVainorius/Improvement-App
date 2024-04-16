@@ -12,28 +12,30 @@ const StravaCallback = () => {
     useEffect(() => {
         const searchParams = new URLSearchParams(location.search);
         const code = searchParams.get('code');
-        // const code = null;
+
         if (code == undefined || code == null) {
             setError(true);
             setErrorMsg("Error getting authentication token from Strava, reload page and try again later.")
             return;
         }
-        console.log("code - ", code);
+        // console.log("code - ", code);
 
         // Exchange code for access token
         const fetchAccessToken = async () => {
             try {
                 const accessToken = localStorage.getItem('access_token');
-                console.log("access tokken - ", accessToken)
+                // console.log("access tokken - ", accessToken)
                 const tokenExpiration = localStorage.getItem('token_expiration');
 
-                if (accessToken && tokenExpiration && Date.now() < Number(tokenExpiration)) {
+                if (accessToken !== null && tokenExpiration && Date.now() < Number(tokenExpiration)) {
                     // Redirect to dashboard
                     console.log("accessToken alreaady exists: ", accessToken, " and expiration date: ", tokenExpiration)
 
                     history.push('/activities-sync');
                     return;
                 }
+
+                // console.log("code field in the fetch: ", code)
 
                 const response = await fetch('https://www.strava.com/oauth/token', {
                     method: 'POST',
@@ -50,9 +52,10 @@ const StravaCallback = () => {
 
                 const data = await response.json();
 
-                console.log("Getting a new access token")
+
                 // Store access token securely (e.g., in local storage)
                 localStorage.setItem('access_token', data.access_token);
+                // console.log("Got new access tokken as set it to local storage - ", data.access_token)
                 localStorage.setItem('token_expiration', Date.now() + (data.expires_in * 1000));
 
                 // Redirect to dashboard
@@ -63,7 +66,7 @@ const StravaCallback = () => {
             }
         };
 
-        if (code !== undefined || code !== null) {
+        if (code !== undefined && code !== null) {
             // code is not null or undefined
             fetchAccessToken();
         }

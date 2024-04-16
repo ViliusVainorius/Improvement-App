@@ -89,13 +89,15 @@ const StravaDashboard = () => {
     }
 
     async function addActivity({ userId, taskId, stravaActivity }) {
+
+        // console.log("activity id? ", stravaActivity.id)
         try {
             const taskRef = doc(db, `users/${userId}/tasks`, taskId);
             await updateDoc(taskRef, {
-                syncedStravaActivity: stravaActivity,
+                syncedStravaActivity: stravaActivity.id,
                 isStravaActivitySynced: true
             });
-            console.log("Data added to task successfully");
+            // console.log("Data added to task successfully");
         } catch (error) {
             console.error("Error adding data to task:", error);
         }
@@ -114,7 +116,6 @@ const StravaDashboard = () => {
                 </>
             )}
         </>
-
     );
 }
 

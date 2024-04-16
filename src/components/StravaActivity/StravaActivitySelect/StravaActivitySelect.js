@@ -9,6 +9,7 @@ const StravaActivitySelect = ({ activityType, selectedTaskId, onStravaActivitySe
             try {
                 // Fetch activities using the stored access token
                 const accessToken = localStorage.getItem('access_token');
+                console.log(accessToken)
                 const response = await fetch(`https://www.strava.com/api/v3/athlete/activities?&per_page=30`, {
                     headers: {
                         'Authorization': `Bearer ${accessToken}`

@@ -14,9 +14,10 @@ const StravaActivity = () => {
     useEffect(() => {
         // Check if access token exists and is not expired
         const accessToken = localStorage.getItem('access_token');
+        console.log("accessToken from local - ", accessToken)
         const tokenExpiration = localStorage.getItem('token_expiration');
 
-        if (accessToken && tokenExpiration && Date.now() < Number(tokenExpiration)) {
+        if (accessToken !== null && tokenExpiration && Date.now() < Number(tokenExpiration)) {
             setIsTokenAccess(true);
         } else {
             setIsTokenAccess(false);

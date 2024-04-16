@@ -8,6 +8,7 @@ import "./todo.css"
 export default function TodoTasks({ userId }) {
   const [tasks, setTasks] = useState([]);
   const [fetchDataTrigger, setFetchDataTrigger] = useState(false);
+  // console.log(userId)
 
   async function getDataFromDB() {
     //Single doc by id fetch

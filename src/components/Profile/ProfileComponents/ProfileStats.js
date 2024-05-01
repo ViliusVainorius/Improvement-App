@@ -56,7 +56,7 @@ const ProfileStats = ({ user }) => {
 
                 try {
                     const caloriesBurned = await getCaloriesBurned(fetchedTasks);
-                    setCaloriesBurned(caloriesBurned);
+                    setCaloriesBurned(Math.round(caloriesBurned));
                 } catch (error) {
                     console.error(error);
                 }
@@ -148,7 +148,7 @@ const ProfileStats = ({ user }) => {
 
                 setRecipeAmount(fetchedRecipes.length)
 
-                setFoodCalories(getFoodCaloriesIntakeAmount(fetchedRecipes));
+                setFoodCalories(Math.round(getFoodCaloriesIntakeAmount(fetchedRecipes)));
 
                 setFoodFat(getFoodFatIntakeAmount(fetchedRecipes));
 

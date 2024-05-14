@@ -30,20 +30,26 @@ const IngredientSearch = ({ updateFridgeData, fridgeData }) => {
     };
 
     const addToFridge = (ingredient) => {
-        const index = fridge.findIndex(item => item.id === ingredient.id);
+        if (fridge && fridge.length > 0) {
+            const index = fridge.findIndex(item => item.id === ingredient.id);
 
-        if (index !== -1) {
+            if (index !== -1) {
 
-            const updatedFridge = [...fridge];
+                const updatedFridge = [...fridge];
 
-            updatedFridge[index].amount += 1;
+                updatedFridge[index].amount += 1;
 
-            setFridge(updatedFridge);
+                setFridge(updatedFridge);
 
-            updateFridgeData(updatedFridge);
+                updateFridgeData(updatedFridge);
 
+            } else {
+
+                setFridge([...fridge, { ...ingredient, amount: 1 }]);
+
+                updateFridgeData([...fridge, { ...ingredient, amount: 1 }]);
+            }
         } else {
-
             setFridge([...fridge, { ...ingredient, amount: 1 }]);
 
             updateFridgeData([...fridge, { ...ingredient, amount: 1 }]);
@@ -65,10 +71,10 @@ const IngredientSearch = ({ updateFridgeData, fridgeData }) => {
 
                 updatedFridge.splice(index, 1);
             }
-
+            updateFridgeData(updatedFridge);
             setFridge(updatedFridge);
 
-            updateFridgeData(updatedFridge);
+
         }
     };
 

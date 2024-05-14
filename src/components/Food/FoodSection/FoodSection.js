@@ -18,9 +18,10 @@ const FoodSection = ({ data }) => {
     }, []);
 
     useEffect(() => {
-        if (data.length > 0) {
-            setLoading(false); // Set loading to false once data is available
-            setFridgeData(data); // Update fridgeData state with the received data
+        //console.log(Array.isArray(data))
+        if (Array.isArray(data)) {
+            setLoading(false);
+            setFridgeData(data);
             updateFridgeData(data);
         }
     }, [data]);
@@ -44,14 +45,15 @@ const FoodSection = ({ data }) => {
     };
 
     const updateFridgeData = (newFridgeData) => {
-        prevFridgeDataRef.current = fridgeData; // Update the ref to store the current fridgeData
+        prevFridgeDataRef.current = fridgeData;
         setFridgeData(newFridgeData);
     };
 
     const saveToFridgeCollection = async () => {
+        //console.log(JSON.stringify(prevFridgeDataRef.current), " !== ", JSON.stringify(fridgeData))
         if (JSON.stringify(prevFridgeDataRef.current) !== JSON.stringify(fridgeData)) {
 
-            console.log(fridgeData, "vs", prevFridgeDataRef.current)
+            //console.log(fridgeData, "vs", prevFridgeDataRef.current)
 
             try {
                 const fridgeDocRef = doc(db, `users/${userId}/fridge`, '0');

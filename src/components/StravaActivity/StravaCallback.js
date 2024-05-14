@@ -35,7 +35,7 @@ const StravaCallback = () => {
                     return;
                 }
 
-                // console.log("code field in the fetch: ", code)
+                console.log("code field in the fetch: ", code)
 
                 const response = await fetch('https://www.strava.com/oauth/token', {
                     method: 'POST',

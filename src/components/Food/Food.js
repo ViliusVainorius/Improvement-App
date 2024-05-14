@@ -7,7 +7,7 @@ import FoodSection from './FoodSection/FoodSection';
 import "./food.css";
 import FoodNavbar from './FoodNavbar';
 import Recepies from './FoodSection/Recepies';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../../firebase/firebase';
 
 
@@ -40,10 +40,13 @@ const Food = () => {
             if (fridgeDocSnap.exists()) {
                 const data = fridgeDocSnap.data().fridgeData;
                 setFridgeData(data);
-                console.log("fridge data - ", data)
+                //console.log("fridge data - ", data)
 
             } else {
                 console.log("Fridge document does not exist.");
+                await setDoc(fridgeDocRef, { fridgeData: [] }, { merge: true });
+                setFridgeData([]);
+                console.log("New fridge document created.");
             }
         } catch (error) {
             console.error("Error fetching fridge data:", error);
